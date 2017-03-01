@@ -6,6 +6,7 @@ import logging
 
 from blog import Handler
 import database
+import signup_validate as sv
 
 class Signup(Handler):
     def get(self):
@@ -19,32 +20,12 @@ class Signup(Handler):
         verify = self.request.get('verify')
         email = self.request.get('email')
 
-        # RE rules for validations
-        USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-        PASS_RE = re.compile(r"^.{3,20}$")
-        EMAIL_RE = re.compile(r"^[\S]+@[\S]+.[\S]+$")
-
-        # Error messages
-        user_warn = 'The username is invalid'
-        user_exists = 'The username already exists'
-        pass_warn = 'The password is not valid'
-        verify_warn = 'The passwords are not the same'
-        email_warn = 'The email is not valid'
-
-        # If it doesnt match, return None
-        def valid_username(username):
-            return USER_RE.match(username)
-
-        def valid_password(password):
-            return PASS_RE.match(password)
-
-        def valid_email(email):
-            return EMAIL_RE.match(email)
-
         valid = True
 
-        if valid_username(username) == None:
+        # These functions come from signup_validate
+        if sv.valid_username(username) == None:
             valid = False
+            user_warn = sv.error_messages['user_warn']
         else:
             user_warn = ''
 
@@ -54,8 +35,9 @@ class Signup(Handler):
             valid = False
             user_warn = user_exists
 
-        if valid_password(password) == None:
+        if sv.valid_password(password) == None:
             valid = False
+            pass_warn = sv.error_messages['pass_warn']
         else:
             pass_warn = ''
 
@@ -64,15 +46,17 @@ class Signup(Handler):
         else:
             verify_warn = ''
 
-        if valid_email(email) == None and email != '':
+        if sv.valid_email(email) == None and email != '':
             valid = False
+            email_warn = sv.error_messages['email_warn']
         else:
             email_warn = ''
 
         # If there is no mistake, redirect, taking the username
         if valid:
-            u = database.User(username=username, password=password)
+            u = database.User(username=username, password=password, email=email)
             u.put()
+            
             # uid = str(random.randint(0,9999999))
             h = hashlib.sha256(username).hexdigest()
             ck = '%s|%s' % (str(username), h)
