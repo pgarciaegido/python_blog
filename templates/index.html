@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <a href="/blog/newpost">Create post!!</a>
+
+  {% for entry in entries %}
+    <div class="entry">
+      <a href="/blog/{{entry.key().id()}}"><h2 class="entry-subject">{{entry.subject}}</h2></a>
+      <p class="entry-content">{{entry.content}}</p>
+      <h5 class="entry-created">{{entry.created}}</h5>
+    </div>
+  {% endfor %}
+{% endblock %}

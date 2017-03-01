@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Signup</h2>
+<form action="/blog/signup" method="post">
+  <label> Username
+    <input type="text" name="username" value="{{user_input}}">
+    <div style="color: red">{{user_warn}}</div>
+  </label><br>
+  <label> Password
+    <input type="password" name="password">
+    <div style="color: red">{{pass_warn}}</div>
+  </label><br>
+  <label> Verify password
+    <input type="password" name="verify">
+    <div style="color: red">{{verify_warn}}</div>
+  </label><br>
+  <label> Email (optional)
+    <input type="text" name="email" value="{{email_input}}">
+    <div style="color: red">{{email_warn}}</div>
+  </label><br>
+  <input type="submit" value="signup">
+</form>
+{% endblock %}
