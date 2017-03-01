@@ -8,7 +8,7 @@ import config
 
 ##### Creates a secure cookie to be sent
 def hash_str(s):
-    return hmac.new(config.SECRET, s).hexdigest()
+    return hmac.new(config.config['SECRET'], s).hexdigest()
 
 # Creates an string with format string, hashed value:
 # "cool,b1f4f9a523e36fd969f4573e25af4540"
