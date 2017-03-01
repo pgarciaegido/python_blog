@@ -7,6 +7,7 @@ import logging
 from blog import Handler
 import database
 import signup_validate as sv
+import hashing
 
 class Signup(Handler):
     def get(self):
@@ -54,12 +55,15 @@ class Signup(Handler):
 
         # If there is no mistake, redirect, taking the username
         if valid:
-            u = database.User(username=username, password=password, email=email)
+            # Hashes password
+            p = hashing.make_pw_hash(username, pw)
+            logging.info(p)
+            # Creates a register in db
+            u = database.User(username=username, password=p, email=email)
             u.put()
-            
-            # uid = str(random.randint(0,9999999))
-            h = hashlib.sha256(username).hexdigest()
-            ck = '%s|%s' % (str(username), h)
+
+
+
             self.response.headers.add_header('Set-Cookie', 'username=%s; Path=/' % ck)
             self.redirect('/blog/welcome')
         # If there is any mistake, renders form with prev values and warns
