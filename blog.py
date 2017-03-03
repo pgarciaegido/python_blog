@@ -6,8 +6,10 @@ import jinja2
 import os
 import webapp2
 from google.appengine.ext import db
+import logging
 
 import hashing
+import database
 
 # get the machine direction where jinja takes the templates from
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -36,6 +38,20 @@ class Handler(webapp2.RequestHandler):
         cookie = hashing.make_secure_val(str(uid))
         # Add cookie to header
         self.response.headers.add_header('Set-Cookie', 'userid=%s; Path=/' % cookie)
+
+    def get_user_cookie(self):
+        uid_cookie = self.request.cookies.get('userid')
+        uid = uid_cookie.split('|')[0]
+        if hashing.check_secure_val(uid_cookie) == uid:
+            # User method to return instance with id
+            return database.User.by_id(int(uid))
+
+    def initialize(self, *a, **kw):
+        webapp2.RequestHandler.initialize(self, *a, **kw)
+        logged_user = self.get_user_cookie()
+        logging.info(logged_user.username)
+        if logged_user:
+            jinja_env.globals['username'] = logged_user.username
 
 
 from index import Index
