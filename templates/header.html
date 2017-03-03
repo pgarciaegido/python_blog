@@ -1,0 +1,17 @@
+<header class="header">
+  <div class="header-container">
+    <h1 class="title">
+      <a href="/blog">Python Blog</a>
+    </h1>
+    <ul class="menu">
+      {% if username %}
+        <li class="header-user">{{username}}</li>
+        <li class="create-new"><a href="/blog/newpost">New post</a></li>
+        <li class="header-logout"><a href="/blog/logout">Logout</a></li>
+      {% else %}
+        <a class="header-signup"><li class="singup">Signup</li></a>
+        <a class="header-signin"><li class="signin">Signin</li></a>
+      {% endif %}
+    </ul>
+  </div>
+</header>
