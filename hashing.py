@@ -2,6 +2,7 @@ import hmac
 import random
 import hashlib
 import string
+import logging
 
 #SECRET comes from here
 import config
@@ -37,4 +38,4 @@ def make_pw_hash(name, pw, salt=""):
 # h would be the complete hash. It would be the one kept in db
 def valid_pw(name, pw, h):
     salt = h.split(',')[1]
-    return h == make_pw_hash(name, pw, h)
+    return h == make_pw_hash(name, pw, salt)

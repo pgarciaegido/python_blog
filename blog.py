@@ -5,8 +5,9 @@
 import jinja2
 import os
 import webapp2
-
 from google.appengine.ext import db
+
+import hashing
 
 # get the machine direction where jinja takes the templates from
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -30,17 +31,27 @@ class Handler(webapp2.RequestHandler):
         # Renders the template, with optional parameters
         self.write(self.render_str(template, **params))
 
+    def set_cookie(self, uid):
+        # Creates a hashed cookie value
+        cookie = hashing.make_secure_val(str(uid))
+        # Add cookie to header
+        self.response.headers.add_header('Set-Cookie', 'userid=%s; Path=/' % cookie)
+
 
 from index import Index
 from new import New
 from post import Post
 from signup import Signup
+from login import Login
+from logout import Logout
 from welcome import Welcome
 
 # Routes
-app = webapp2.WSGIApplication([('/blog', Index),
+app = webapp2.WSGIApplication([('/blog/?', Index),
                                ('/blog/newpost', New),
                                ('/blog/(\d+)', Post),
                                ('/blog/signup', Signup),
+                               ('/blog/login', Login),
+                               ('/logout', Logout),
                                ('/blog/welcome', Welcome)
                               ], debug=True)

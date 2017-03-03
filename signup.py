@@ -65,10 +65,8 @@ class Signup(Handler):
             u.put()
             # Gets id from entity
             uid = u.key().id()
-            # Creates a hashed cookie value
-            cookie = hashing.make_secure_val(str(uid))
-            # Add cookie to header
-            self.response.headers.add_header('Set-Cookie', 'userid=%s; Path=/' % cookie)
+            # Sets cookie
+            self.set_cookie(uid)
             self.redirect('/blog/welcome')
         # If there is any mistake, renders form with prev values and warns
         else:
