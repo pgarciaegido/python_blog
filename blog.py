@@ -52,6 +52,6 @@ app = webapp2.WSGIApplication([('/blog/?', Index),
                                ('/blog/(\d+)', Post),
                                ('/blog/signup', Signup),
                                ('/blog/login', Login),
-                               ('/logout', Logout),
+                               ('/blog/logout', Logout),
                                ('/blog/welcome', Welcome)
                               ], debug=True)
