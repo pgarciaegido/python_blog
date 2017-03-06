@@ -3,6 +3,7 @@
 import jinja2
 import os
 import webapp2
+import logging
 
 # from google.appengine.ext import db
 
@@ -46,11 +47,12 @@ class Handler(webapp2.RequestHandler):
             # User method to return instance with id
             return database.User.by_id(int(uid))
 
-    # def initialize(self, *a, **kw):
-    #     webapp2.RequestHandler.initialize(self, *a, **kw)
-    #     logged_user = self.get_user_cookie()
-    #     if logged_user:
-    #         jinja_env.globals['username'] = logged_user.username
+    def initialize(self, *a, **kw):
+        webapp2.RequestHandler.initialize(self, *a, **kw)
+        uid_cookie = self.request.cookies.get('userid')
+        if uid_cookie:
+            logged_user = self.get_user_cookie()
+            jinja_env.globals['username'] = logged_user.username
 
 # Modules are set here, because if declared on top it trows a
 # circular dependent imports error (documented at Stack Overflow)
