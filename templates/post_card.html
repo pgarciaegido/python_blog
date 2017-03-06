@@ -16,6 +16,7 @@
       <form action="/blog/like?l={{entry.key().id()}}" method="post">
         <!-- Sends username thanks to username global value -->
         <input type="hidden" name="username" value="{{username}}">
+        <input type="hidden" name="author" value="{{entry.author}}">
         <!-- Check if username has liked the post -->
         <!-- Array use brought from
         http://stackoverflow.com/questions/14516766/python-how-to-store-an-array-in-google-app-engine-datastore -->
