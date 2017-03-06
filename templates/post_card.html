@@ -16,7 +16,20 @@
       <form action="/blog/like?l={{entry.key().id()}}" method="post">
         <!-- Sends username thanks to username global value -->
         <input type="hidden" name="username" value="{{username}}">
-        <input type="submit" class="like" value="Like!">
+        <!-- Check if username has liked the post -->
+        <!-- Array use brought from
+        http://stackoverflow.com/questions/14516766/python-how-to-store-an-array-in-google-app-engine-datastore -->
+        {% set liked = [] %}
+        {% for u in entry.liked_by %}
+          {% if username == u %}
+            {% if liked.append(True) %}{% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if liked[0] == True %}
+          <input type="submit" class="like" value="Unlike">
+        {% else %}
+          <input type="submit" class="like" value="Like">
+        {% endif %}
       </form>
     </div>
     <span class="entry-author">Written by {{entry.author}}</span>
