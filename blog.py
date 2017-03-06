@@ -61,6 +61,7 @@ from signup  import Signup
 from login   import Login
 from logout  import Logout
 from welcome import Welcome
+from edit    import Edit
 
 # Routes
 app = webapp2.WSGIApplication([('/blog/?', Index),
@@ -69,5 +70,6 @@ app = webapp2.WSGIApplication([('/blog/?', Index),
                                ('/blog/signup', Signup),
                                ('/blog/login', Login),
                                ('/blog/logout', Logout),
-                               ('/blog/welcome', Welcome)
+                               ('/blog/welcome', Welcome),
+                               ('/blog/edit', Edit)
                               ], debug=True)
