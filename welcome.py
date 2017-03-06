@@ -1,7 +1,7 @@
+# My modules
 from blog import Handler
-import hashing
 from database import User
-import logging
+import hashing
 
 class Welcome(Handler):
     def get(self):

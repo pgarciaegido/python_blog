@@ -18,6 +18,7 @@ body{
 
 .header .header-container{
   display: flex;
+  box-sizing: border-box;
   justify-content: space-between;
   width: 800px;
   margin: 0 auto;
@@ -30,6 +31,7 @@ body{
 
 .header .header-container .menu{
   margin: 0;
+  padding: 0;
   display: flex;
   justify-content: space-between;
   list-style-type: none;
@@ -59,6 +61,7 @@ body{
 
 /* Main content */
 .container{
+  box-sizing: border-box;
   width: 800px;
   margin: 0 auto;
 }
@@ -141,5 +144,19 @@ body{
 }
 
 /* --- Form Section --- */
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 800px){
+  .header .header-container{
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .container{
+    width: 100%;
+    padding: 0 10px;
+  }
+}
 
 </style>

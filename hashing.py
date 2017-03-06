@@ -1,8 +1,8 @@
+# Built-in modules
 import hmac
 import random
 import hashlib
 import string
-import logging
 
 #SECRET comes from here
 import config

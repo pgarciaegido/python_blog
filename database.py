@@ -9,7 +9,7 @@ class Entry(db.Model):
 class User(db.Model):
     username = db.StringProperty(required = True)
     password = db.StringProperty(required = True)
-    email = db.StringProperty()
+    email    = db.StringProperty()
 
     @classmethod
     def by_id(cls, uid):

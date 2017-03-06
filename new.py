@@ -1,13 +1,19 @@
+# My modules
 from blog import Handler
 import database
 
 class New(Handler):
     def render_front(self, subject="", content="", error=""):
-        # Selects newpost template, with default empry strings for form inpts
-        self.render("newpost.html", subject=subject, content=content, error=error)
+        # Selects newpost template, with default empty strings for form inpts
+        self.render("newpost.html", subject=subject, content=content,
+                                    error=error)
 
     def get(self):
-        self.render_front()
+        # Check cookies to see if user is logged
+        if self.request.cookies.get('userid') == '':
+            self.redirect('/blog/signup')
+        else:
+            self.render_front()
 
     def post(self):
         # Get both the subject and the content

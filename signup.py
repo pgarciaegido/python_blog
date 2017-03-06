@@ -1,9 +1,10 @@
-from google.appengine.ext import db
+# from google.appengine.ext import db
 
+# Built in modules
 import re
 import hashlib
-import logging
 
+# My modules
 from blog import Handler
 import database
 import signup_validate as sv
@@ -13,7 +14,6 @@ import config
 class Signup(Handler):
     def get(self):
         self.render("signup.html")
-
 
     def post(self):
         # Get values from form inputs
@@ -59,7 +59,6 @@ class Signup(Handler):
         if valid:
             # Hashes password
             p = hashing.make_pw_hash(username, password)
-            logging.info(p)
             # Creates a register in db
             u = database.User(username=username, password=p, email=email)
             u.put()

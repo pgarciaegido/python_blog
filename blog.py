@@ -1,13 +1,12 @@
-# dev_appserver.py .
-
 # jinja is the template manager, and webapp the Google Framework
 # are working on
 import jinja2
 import os
 import webapp2
-from google.appengine.ext import db
-import logging
 
+# from google.appengine.ext import db
+
+# My modules
 import hashing
 import database
 
@@ -37,7 +36,8 @@ class Handler(webapp2.RequestHandler):
         # Creates a hashed cookie value
         cookie = hashing.make_secure_val(str(uid))
         # Add cookie to header
-        self.response.headers.add_header('Set-Cookie', 'userid=%s; Path=/' % cookie)
+        self.response.headers.add_header('Set-Cookie',
+        'userid=%s; Path=/' % cookie)
 
     def get_user_cookie(self):
         uid_cookie = self.request.cookies.get('userid')
@@ -52,13 +52,14 @@ class Handler(webapp2.RequestHandler):
         if logged_user:
             jinja_env.globals['username'] = logged_user.username
 
-
-from index import Index
-from new import New
-from post import Post
-from signup import Signup
-from login import Login
-from logout import Logout
+# Modules are set here, because if declared on top it trows a
+# circular dependent imports error (documented at Stack Overflow)
+from index   import Index
+from new     import New
+from post    import Post
+from signup  import Signup
+from login   import Login
+from logout  import Logout
 from welcome import Welcome
 
 # Routes

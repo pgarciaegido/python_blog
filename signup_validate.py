@@ -7,11 +7,11 @@ EMAIL_RE = re.compile(r"^[\S]+@[\S]+.[\S]+$")
 
 # Error messages
 error_messages = {
-    "user_warn": 'The username is invalid',
+    "user_warn"  : 'The username is invalid',
     "user_exists": 'The username already exists',
-    "pass_warn": 'The password is not valid',
+    "pass_warn"  : 'The password is not valid',
     "verify_warn": 'The passwords are not the same',
-    "email_warn": 'The email is not valid'
+    "email_warn" : 'The email is not valid'
 }
 
 

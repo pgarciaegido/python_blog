@@ -1,4 +1,4 @@
-import logging
+# My modules
 from blog import Handler
 import database
 import hashing
