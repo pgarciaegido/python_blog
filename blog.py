@@ -46,11 +46,11 @@ class Handler(webapp2.RequestHandler):
             # User method to return instance with id
             return database.User.by_id(int(uid))
 
-    def initialize(self, *a, **kw):
-        webapp2.RequestHandler.initialize(self, *a, **kw)
-        logged_user = self.get_user_cookie()
-        if logged_user:
-            jinja_env.globals['username'] = logged_user.username
+    # def initialize(self, *a, **kw):
+    #     webapp2.RequestHandler.initialize(self, *a, **kw)
+    #     logged_user = self.get_user_cookie()
+    #     if logged_user:
+    #         jinja_env.globals['username'] = logged_user.username
 
 # Modules are set here, because if declared on top it trows a
 # circular dependent imports error (documented at Stack Overflow)
@@ -62,6 +62,7 @@ from login   import Login
 from logout  import Logout
 from welcome import Welcome
 from edit    import Edit
+from delete  import Delete
 
 # Routes
 app = webapp2.WSGIApplication([('/blog/?', Index),
@@ -71,5 +72,6 @@ app = webapp2.WSGIApplication([('/blog/?', Index),
                                ('/blog/login', Login),
                                ('/blog/logout', Logout),
                                ('/blog/welcome', Welcome),
-                               ('/blog/edit', Edit)
+                               ('/blog/edit', Edit),
+                               ('/blog/delete', Delete)
                               ], debug=True)
