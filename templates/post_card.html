@@ -14,6 +14,8 @@
       </form>
       <span class="total-likes">Total likes: {{entry.likes}}</span>
       <form action="/blog/like?l={{entry.key().id()}}" method="post">
+        <!-- Sends username thanks to username global value -->
+        <input type="hidden" name="username" value="{{username}}">
         <input type="submit" class="like" value="Like!">
       </form>
     </div>

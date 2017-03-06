@@ -3,11 +3,12 @@ from google.appengine.ext import db
 # Creates a new table(?). This is the schema.
 # Post
 class Entry(db.Model):
-    subject = db.StringProperty(required = True)
-    content = db.TextProperty(required = True)
-    author  = db.StringProperty(required = True)
-    created = db.DateTimeProperty(auto_now_add = True)
-    likes   = db.IntegerProperty(required = True)
+    subject  = db.StringProperty(required = True)
+    content  = db.TextProperty(required = True)
+    author   = db.StringProperty(required = True)
+    created  = db.DateTimeProperty(auto_now_add = True)
+    likes    = db.IntegerProperty(required = True)
+    liked_by = db.ListProperty(item_type = str) # --> List
 
     @classmethod
     def by_id(cls, pid):
