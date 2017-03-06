@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="POST" action="/blog/login">
-  <label>
-    Username
+<div class="login form-section">
+  <h2>Login</h2>
+  <form method="POST" action="/blog/login">
+    <div>Username</div>
     <input type="text" name="username" value="{{username}}">
-  </label><br>
-  <label>
-    Password
+    <br>
+    <div>Password</div>
     <input type="password" name="password">
-  </label><br>
-  <div>{{error}}</div>
-  <input type="submit">
-</form>
+    <br>
+    <div>{{error}}</div>
+    <input type="submit">
+  </form>
+</div>
 {% endblock %}

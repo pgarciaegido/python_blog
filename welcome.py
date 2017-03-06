@@ -6,7 +6,7 @@ import logging
 class Welcome(Handler):
     def get(self):
         # Get userid cookie
-        u = get_user_cookie()
+        u = self.get_user_cookie()
         if u:
             self.write('welcome! your username is: %s ' % u.username)
         else:

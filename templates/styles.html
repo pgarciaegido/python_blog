@@ -9,10 +9,11 @@ body{
   color: #33373E;
   background-color: #ECEAE4;
 }
-
+/* Header */
 .header{
   width: 100%;
   background-color: white;
+  margin-bottom: 20px;
 }
 
 .header .header-container{
@@ -30,11 +31,115 @@ body{
 .header .header-container .menu{
   margin: 0;
   display: flex;
+  justify-content: space-between;
   list-style-type: none;
 }
 
+.header .header-container .menu{
+  margin-top: 10px;
+}
+
+.header .header-container .menu a{
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.header .header-container .menu a:hover{
+  color: #7FC7AF;
+}
+
+.header .header-container .menu li{
+  padding-right: 10px;
+}
+
+
+
+/* --- End Header --- */
+
+/* Main content */
 .container{
   width: 800px;
   margin: 0 auto;
 }
+
+/* Index */
+.entry{
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.entry:hover{
+  background-color: #7FC7AF;
+}
+
+.entry .entry-subject{
+  font-size: 1.4em;
+}
+
+.entry .entry-content{
+  line-height: 20px;
+}
+
+.entry .entry-created{
+  margin-bottom: 10px;
+  text-align: right;
+}
+/* --- Index --- */
+
+/* Post */
+.post{
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: white;
+}
+/* --- Post --- */
+
+/* Form-section */
+.form-section{
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.form-section h2{
+  margin-top: 0;
+}
+
+.form-section form{
+  text-align: center;
+}
+
+.form-section form div{
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.form-section form input{
+  margin-bottom: 10px;
+}
+
+.form-section form input[type="submit"]{
+  background-color: #7FC7AF;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  width: 150px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-section form input[type="submit"]:hover{
+  background-color: #9c43b2;
+}
+
+/* --- Form Section --- */
+
 </style>

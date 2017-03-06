@@ -49,7 +49,6 @@ class Handler(webapp2.RequestHandler):
     def initialize(self, *a, **kw):
         webapp2.RequestHandler.initialize(self, *a, **kw)
         logged_user = self.get_user_cookie()
-        logging.info(logged_user.username)
         if logged_user:
             jinja_env.globals['username'] = logged_user.username
 

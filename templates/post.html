@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2 class="entry-subject">{{entry.subject}}</h2>
-<p class="entry-content">{{entry.content}}</p>
-<h5 class="entry-created">{{entry.created}}</h5>
+<div class="post">
+  <h2 class="entry-subject">{{entry.subject}}</h2>
+  <p class="entry-content">{{entry.content}}</p>
+  <h5 class="entry-created">{{entry.created}}</h5>
+</div>
 {% endblock %}
