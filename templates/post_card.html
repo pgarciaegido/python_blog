@@ -12,6 +12,10 @@
       <form action="/blog/delete?d={{entry.key().id()}}" method="post">
         <input type="submit" class="delete" value="Delete" />
       </form>
+      <span class="total-likes">Total likes: {{entry.likes}}</span>
+      <form action="/blog/like?l={{entry.key().id()}}" method="post">
+        <input type="submit" class="like" value="Like!">
+      </form>
     </div>
     <span class="entry-author">Written by {{entry.author}}</span>
   </div>

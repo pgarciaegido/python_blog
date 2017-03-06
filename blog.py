@@ -72,6 +72,7 @@ from logout  import Logout
 from welcome import Welcome
 from edit    import Edit
 from delete  import Delete
+from like    import Like
 
 # Routes
 app = webapp2.WSGIApplication([('/blog/?', Index),
@@ -82,5 +83,6 @@ app = webapp2.WSGIApplication([('/blog/?', Index),
                                ('/blog/logout', Logout),
                                ('/blog/welcome', Welcome),
                                ('/blog/edit', Edit),
-                               ('/blog/delete', Delete)
+                               ('/blog/delete', Delete),
+                               ('/blog/like', Like)
                               ], debug=True)

@@ -7,6 +7,7 @@ class Entry(db.Model):
     content = db.TextProperty(required = True)
     author  = db.StringProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
+    likes   = db.IntegerProperty(required = True)
 
     @classmethod
     def by_id(cls, pid):

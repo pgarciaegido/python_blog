@@ -1,10 +1,8 @@
-# My modules
 from blog import Handler
 from database import Entry
-import logging
 import time
 
-class Delete(Handler):
+class Like(Handler):
 
     def post(self):
         # If user is not logged in
@@ -14,8 +12,9 @@ class Delete(Handler):
         else:
             post_id = self.request.query.split('=')[1]
             post = Entry.get_by_id(int(post_id))
-            post.delete()
+            post.likes += 1
+            post.put()
             # When redirecting, db was still sending me the just deleted item
-            # This workaround avoids that
+            # This workaround avoids that. (Documented at Stack Overflow)
             time.sleep(0.1)
             self.redirect('/blog')

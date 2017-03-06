@@ -20,10 +20,11 @@ class New(Handler):
         subject = self.request.get('subject')
         content = self.request.get('content')
         author = self.get_user_cookie().username
+        likes = 0
 
         if subject and content:
             # If both exist, create new db instance
-            e = database.Entry(subject = subject, content = content, author = author)
+            e = database.Entry(subject = subject, content = content, author = author, likes=likes)
             # This saves the instance
             e.put()
 
