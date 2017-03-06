@@ -40,18 +40,21 @@ class Handler(webapp2.RequestHandler):
         self.response.headers.add_header('Set-Cookie',
         'userid=%s; Path=/' % cookie)
 
-    def get_user_cookie(self):
-        uid_cookie = self.request.cookies.get('userid')
-        uid = uid_cookie.split('|')[0]
-        if hashing.check_secure_val(uid_cookie) == uid:
+    def check_cookie(self, cookie):
+        uid = cookie.split('|')[0]
+        if hashing.check_secure_val(cookie) == uid:
             # User method to return instance with id
             return database.User.by_id(int(uid))
+
+    def get_user_cookie(self):
+        uid_cookie = self.request.cookies.get('userid')
+        return self.check_cookie(uid_cookie)
 
     def initialize(self, *a, **kw):
         webapp2.RequestHandler.initialize(self, *a, **kw)
         uid_cookie = self.request.cookies.get('userid')
         if uid_cookie:
-            logged_user = self.get_user_cookie()
+            logged_user = self.check_cookie(uid_cookie)
             jinja_env.globals['username'] = logged_user.username
 
 # Modules are set here, because if declared on top it trows a
