@@ -5,7 +5,7 @@ from google.appengine.ext import db
 class Entry(db.Model):
     subject = db.StringProperty(required = True)
     content = db.TextProperty(required = True)
-    # author  = db.IntegerProperty(required = True)
+    author  = db.StringProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
 
     @classmethod

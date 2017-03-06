@@ -46,6 +46,7 @@ class Signup(Handler):
 
         if password != verify:
             valid = False
+            verify_warn = sv.error_messages['verify_warn']
         else:
             verify_warn = ''
 

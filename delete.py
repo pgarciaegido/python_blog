@@ -14,3 +14,4 @@ class Delete(Handler):
         post_id = self.request.query.split('=')[1]
         post = Entry.get_by_id(int(post_id))
         post.delete()
+        self.redirect('/blog')

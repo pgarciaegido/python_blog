@@ -3,10 +3,10 @@ from blog import Handler
 import database
 
 class New(Handler):
-    def render_front(self, subject="", content="", error=""):
+    def render_front(self, subject="", content="", author="", error=""):
         # Selects newpost template, with default empty strings for form inpts
         self.render("newpost.html", subject=subject, content=content,
-                                    error=error)
+                                    author=author, error=error)
 
     def get(self):
         # Check cookies to see if user is logged
@@ -19,10 +19,11 @@ class New(Handler):
         # Get both the subject and the content
         subject = self.request.get('subject')
         content = self.request.get('content')
+        author = self.get_user_cookie().username
 
         if subject and content:
             # If both exist, create new db instance
-            e = database.Entry(subject = subject, content = content)
+            e = database.Entry(subject = subject, content = content, author = author)
             # This saves the instance
             e.put()
 

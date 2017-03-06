@@ -81,6 +81,7 @@ body{
 }
 
 .entry .entry-subject{
+  margin-top: 0;
   font-size: 1.4em;
 }
 
@@ -89,9 +90,32 @@ body{
 }
 
 .entry .entry-created{
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
   text-align: right;
 }
+
+.entry .entry-bottom{
+  display: flex;
+  justify-content: space-between;
+}
+.entry .entry-bottom .entry-options{
+  display: flex;
+}
+
+.entry .entry-bottom .entry-options input{
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.entry .entry-bottom .entry-options .delete{
+  color: #e5144f;
+  margin-left: 10px;
+}
+
+.entry .entry-bottom .entry-author{
+  font-style: italic;
+}
+
 /* --- Index --- */
 
 /* Post */

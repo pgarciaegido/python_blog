@@ -53,9 +53,13 @@ class Handler(webapp2.RequestHandler):
     def initialize(self, *a, **kw):
         webapp2.RequestHandler.initialize(self, *a, **kw)
         uid_cookie = self.request.cookies.get('userid')
+
         if uid_cookie:
+            logging.info('pasa por initialize con cookie')
             logged_user = self.check_cookie(uid_cookie)
             jinja_env.globals['username'] = logged_user.username
+        else:
+            jinja_env.globals['username'] = ''
 
 # Modules are set here, because if declared on top it trows a
 # circular dependent imports error (documented at Stack Overflow)
