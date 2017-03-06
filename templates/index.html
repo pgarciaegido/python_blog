@@ -2,24 +2,6 @@
 
 {% block content %}
   {% for entry in entries %}
-    <div class="entry">
-      <a href="/blog/{{entry.key().id()}}">
-        <div>
-          <h5 class="entry-created">{{entry.created}}</h5>
-          <h2 class="entry-subject">{{entry.subject}}</h2>
-          <p class="entry-content">{{entry.content}}</p>
-        </div>
-      </a>
-      <div class="entry-bottom">
-        <div class="entry-options">
-          <span class="edit">Edit</span>
-          <form action="/blog/delete?d={{entry.key().id()}}" method="post">
-            <input type="submit" class="delete" value="Delete" />
-          </form>
-        </div>
-        <span class="entry-author">Written by {{entry.author}}</span>
-      </div>
-
-    </div>
+    {% include "post_card.html" %}
   {% endfor %}
 {% endblock %}

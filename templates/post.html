@@ -1,10 +1,5 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="post">
-  <h5 class="entry-created">{{entry.created}}</h5>
-  <span>{{entry.author}}</span>
-  <h2 class="entry-subject">{{entry.subject}}</h2>
-  <p class="entry-content">{{entry.content}}</p>
-</div>
+  {% include "post_card.html" %}
 {% endblock %}

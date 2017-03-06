@@ -3,11 +3,12 @@
 {% block content %}
 <div class="new-post form-section">
   <h2>Edit post</h2>
-  <form action="/blog/newpost" method="post">
+  <form action="/blog/edit" method="post">
     <label for="">
       <div>Subject</div>
       <input type="text" name="subject" value="{{subject}}">
     </label><br>
+    <input type="hidden" name="post" value="{{post_id}}">
     <label for="">
       <div>Content</div>
       <textarea name="content">{{content}}</textarea>
