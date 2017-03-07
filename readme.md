@@ -17,6 +17,14 @@ The templates and styles are in the _templates_ folder, powered by Jinja2.
 ## Usage
 If you clone this repo, and have installed [Python](https://www.python.org/downloads/) and [Google App Engine](https://cloud.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python) you could run my code and create your own blog.
 
+Notice that the config.py file is ignored. You have to create one yourself with an string in order to create the salt to hash the userid cookie. Use the following format.
+
+```python
+config = {
+    'SECRET': 'RandomStringHere'
+}
+```
+
 In order to launch a local server from terminal:
 ```sh
 $ dev_appserver.py .
