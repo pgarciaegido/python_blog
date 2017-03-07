@@ -4,6 +4,8 @@
       <a href="/blog">Python Blog</a>
     </h1>
     <ul class="menu">
+      <!-- username works as a global variable
+      if user is not logged in, username = '' -->
       {% if username %}
         <li class="header-user">{{username}} |</li>
         <li class="create-new"><a href="/blog/newpost">New post</a></li>
