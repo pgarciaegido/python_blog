@@ -21,6 +21,9 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 
 class Handler(webapp2.RequestHandler):
     """ Instance of the framework """
+    def get(self):
+        self.redirect('/blog/?')
+
     def write(self, *a, **params):
         # Writes whatever you pass as param
         self.response.out.write(*a, **params)
@@ -74,7 +77,8 @@ from delete  import Delete
 from like    import Like
 
 # Routes
-app = webapp2.WSGIApplication([('/blog/?', Index),
+app = webapp2.WSGIApplication([('/?', Handler),
+                               ('/blog/?', Index),
                                ('/blog/newpost', New),
                                ('/blog/(\d+)', Post),
                                ('/blog/signup', Signup),

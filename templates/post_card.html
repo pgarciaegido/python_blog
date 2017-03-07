@@ -6,13 +6,17 @@
       <p class="entry-content">{{entry.content}}</p>
     </div>
   </a>
+  <div class="total-likes">Total likes: {{entry.likes}}</div>
   <div class="entry-bottom">
     <div class="entry-options">
-      <a href="/blog/edit?p={{entry.key().id()}}" class="edit">Edit</a>
+      <!-- edit -->
+      <a href="/blog/edit?p={{entry.key().id()}}__a={{entry.author}}" class="edit">Edit</a>
+      <!-- delete -->
       <form action="/blog/delete?d={{entry.key().id()}}" method="post">
         <input type="submit" class="delete" value="Delete" />
+        <input type="hidden" name="author" value="{{entry.author}}">
       </form>
-      <span class="total-likes">Total likes: {{entry.likes}}</span>
+      <!-- likes -->
       <form action="/blog/like?l={{entry.key().id()}}" method="post">
         <!-- Sends username thanks to username global value -->
         <input type="hidden" name="username" value="{{username}}">
