@@ -19,8 +19,8 @@ class New(Handler):
         # Get both the subject and the content
         subject = self.request.get('subject')
         content = self.request.get('content')
-        author = self.get_user_cookie().username
-        likes = 0
+        author  = self.get_user_cookie().username
+        likes   = 0
 
         if subject and content:
             # If both exist, create new db instance

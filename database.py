@@ -1,6 +1,6 @@
 from google.appengine.ext import db
 
-# Creates a new table(?). This is the schema.
+### MODELS, DB TABLES
 # Post
 class Entry(db.Model):
     subject  = db.StringProperty(required = True)

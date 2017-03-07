@@ -3,13 +3,12 @@
 import jinja2
 import os
 import webapp2
-import logging
 
 # from google.appengine.ext import db
 
 # My modules
-import hashing
 import database
+import hashing
 
 # get the machine direction where jinja takes the templates from
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -20,7 +19,7 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 
 
 class Handler(webapp2.RequestHandler):
-    """ Instance of the framework """
+    """ Instance of the Google App Engine framework """
     def get(self):
         self.redirect('/blog/?')
 
@@ -44,21 +43,25 @@ class Handler(webapp2.RequestHandler):
         'userid=%s; Path=/' % cookie)
 
     def check_cookie(self, cookie):
+        # Checks if cookie is correct
         uid = cookie.split('|')[0]
         if hashing.check_secure_val(cookie) == uid:
             # User method to return instance with id
             return database.User.by_id(int(uid))
 
     def get_user_cookie(self):
+        # Gets a cookie and checks if correct
         uid_cookie = self.request.cookies.get('userid')
         return self.check_cookie(uid_cookie)
 
     def initialize(self, *a, **kw):
         webapp2.RequestHandler.initialize(self, *a, **kw)
+        # Gets cookie
         uid_cookie = self.request.cookies.get('userid')
         if uid_cookie:
-            logging.info('pasa por initialize con cookie')
+            # logged_user is an instance of User db
             logged_user = self.check_cookie(uid_cookie)
+            # Creates a global variable to use in templates
             jinja_env.globals['username'] = logged_user.username
         else:
             jinja_env.globals['username'] = ''
