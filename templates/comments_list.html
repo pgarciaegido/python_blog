@@ -4,8 +4,9 @@
     <p class="com">{{com.comment}}</p>
     <div class="comment-bottom">
       <div class="options">
-        <a href="/blog/edit_comment?c={{com.key().id()}}">Edit</a>
-        <form action="/blog/edit_comment?c={{com.key().id()}}" method="post">
+        <a href="/blog/edit_comment?c={{com.key().id()}}__a={{com.author}}__p={{com.entry}}">Edit</a>
+        <form action="/blog/delete_comment?c={{com.key().id()}}" method="post">
+          <input type="hidden" name="author" value="{{com.author}}">
           <input type="submit" value="Delete">
         </form>
       </div>

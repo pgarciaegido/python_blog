@@ -2,6 +2,8 @@
 from blog import Handler
 import database
 
+import time
+
 class Comment(Handler):
     def post(self):
         query  = self.request.query.split('__')
@@ -13,4 +15,5 @@ class Comment(Handler):
         c = database.Comments(author=author, entry=int(entry), comment=comment)
         c.put()
 
+        time.sleep(0.1)
         self.redirect('/blog/' + entry)

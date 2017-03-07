@@ -68,17 +68,19 @@ class Handler(webapp2.RequestHandler):
 
 # Modules are set here, because if declared on top it trows a
 # circular dependent imports error (documented at Stack Overflow)
-from index   import Index
-from new     import New
-from post    import Post
-from signup  import Signup
-from login   import Login
-from logout  import Logout
-from welcome import Welcome
-from edit    import Edit
-from delete  import Delete
-from like    import Like
-from comment import Comment
+from index          import Index
+from new            import New
+from post           import Post
+from signup         import Signup
+from login          import Login
+from logout         import Logout
+from welcome        import Welcome
+from edit           import Edit
+from delete         import Delete
+from like           import Like
+from comment        import Comment
+from delete_comment import Delete_comment
+from edit_comment   import Edit_comment
 
 # Routes
 app = webapp2.WSGIApplication([('/?', Handler),
@@ -92,5 +94,7 @@ app = webapp2.WSGIApplication([('/?', Handler),
                                ('/blog/edit', Edit),
                                ('/blog/delete', Delete),
                                ('/blog/like', Like),
-                               ('/blog/comment', Comment)
+                               ('/blog/comment', Comment),
+                               ('/blog/delete_comment', Delete_comment),
+                               ('/blog/edit_comment', Edit_comment)
                               ], debug=True)

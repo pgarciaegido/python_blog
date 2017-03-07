@@ -39,10 +39,10 @@ class Comments(db.Model):
 
     @classmethod
     def by_id(cls, uid):
-        u = Coments.get_by_id(uid)
+        u = Comments.get_by_id(uid)
         return u
 
     @classmethod
-    def by_entry(cls, entry_id):
-        u = Comments.all().filter('entry =', entry_id).fetch(100)
+    def by_entry(cls, entry_id, created):
+        u = Comments.all().filter('entry =', entry_id).order(created).fetch(100)
         return u
