@@ -79,8 +79,8 @@ from python_blog.edit           import Edit
 from python_blog.delete         import Delete
 from python_blog.like           import Like
 from python_blog.comment        import Comment
-from python_blog.delete_comment import Delete_comment
-from python_blog.edit_comment   import Edit_comment
+from python_blog.delete_comment import DeleteComment
+from python_blog.edit_comment   import EditComment
 
 # Routes
 app = webapp2.WSGIApplication([('/?', Handler),
@@ -95,6 +95,6 @@ app = webapp2.WSGIApplication([('/?', Handler),
                                ('/blog/delete', Delete),
                                ('/blog/like', Like),
                                ('/blog/comment', Comment),
-                               ('/blog/delete_comment', Delete_comment),
-                               ('/blog/edit_comment', Edit_comment)
+                               ('/blog/delete_comment', DeleteComment),
+                               ('/blog/edit_comment', EditComment)
                               ], debug=True)

@@ -4,7 +4,7 @@ from database import Comments
 
 import time
 
-class Delete_comment(Handler):
+class DeleteComment(Handler):
 
     def post(self):
         # If user is not logged in

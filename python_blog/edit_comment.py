@@ -4,7 +4,7 @@ from database import Comments
 
 import time
 
-class Edit_comment(Handler):
+class EditComment(Handler):
     def get(self):
         # If user is not logged in
         if not self.request.cookies.get('userid'):
