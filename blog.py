@@ -78,6 +78,7 @@ from welcome import Welcome
 from edit    import Edit
 from delete  import Delete
 from like    import Like
+from comment import Comment
 
 # Routes
 app = webapp2.WSGIApplication([('/?', Handler),
@@ -90,5 +91,6 @@ app = webapp2.WSGIApplication([('/?', Handler),
                                ('/blog/welcome', Welcome),
                                ('/blog/edit', Edit),
                                ('/blog/delete', Delete),
-                               ('/blog/like', Like)
+                               ('/blog/like', Like),
+                               ('/blog/comment', Comment)
                               ], debug=True)

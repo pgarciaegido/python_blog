@@ -5,6 +5,7 @@ a{
 }
 body{
   margin: 0;
+  padding-bottom: 50px;
   font-family: sans-serif;
   color: #33373E;
   background-color: #ECEAE4;
@@ -230,7 +231,50 @@ body{
   text-align: center;
   color: #7FC7AF;
 }
+/* --- Welcome --- */
 
+/* Comments */
+.comment{
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.comment .com{
+  margin-top: 0;
+}
+
+.comment .author{
+  margin-bottom: 0;
+  text-align: right;
+  font-style: italic;
+}
+
+.comments-create textarea{
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.comments-create input[type="submit"]{
+  background-color: #7FC7AF;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  width: 150px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.comments.create input[type="submit"]:hover{
+  background-color: #9c43b2;
+}
+
+/* --- Comments --- */
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 800px){
