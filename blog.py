@@ -7,8 +7,8 @@ import webapp2
 # from google.appengine.ext import db
 
 # My modules
-import database
-import hashing
+import python_blog.database as database
+import python_blog.hashing  as hashing
 
 # get the machine direction where jinja takes the templates from
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -68,19 +68,19 @@ class Handler(webapp2.RequestHandler):
 
 # Modules are set here, because if declared on top it trows a
 # circular dependent imports error (documented at Stack Overflow)
-from index          import Index
-from new            import New
-from post           import Post
-from signup         import Signup
-from login          import Login
-from logout         import Logout
-from welcome        import Welcome
-from edit           import Edit
-from delete         import Delete
-from like           import Like
-from comment        import Comment
-from delete_comment import Delete_comment
-from edit_comment   import Edit_comment
+from python_blog.index          import Index
+from python_blog.new            import New
+from python_blog.post           import Post
+from python_blog.signup         import Signup
+from python_blog.login          import Login
+from python_blog.logout         import Logout
+from python_blog.welcome        import Welcome
+from python_blog.edit           import Edit
+from python_blog.delete         import Delete
+from python_blog.like           import Like
+from python_blog.comment        import Comment
+from python_blog.delete_comment import Delete_comment
+from python_blog.edit_comment   import Edit_comment
 
 # Routes
 app = webapp2.WSGIApplication([('/?', Handler),
