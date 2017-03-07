@@ -2,6 +2,14 @@
 {% for com in comments %}
   <div class="comment">
     <p class="com">{{com.comment}}</p>
-    <p class="author">{{com.author}}</p>
+    <div class="comment-bottom">
+      <div class="options">
+        <a href="/blog/edit_comment?c={{com.key().id()}}">Edit</a>
+        <form action="/blog/edit_comment?c={{com.key().id()}}" method="post">
+          <input type="submit" value="Delete">
+        </form>
+      </div>
+      <span class="author">{{com.author}}</span>
+    </div>
   </div>
 {% endfor %}
