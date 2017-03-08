@@ -7,7 +7,7 @@ import webapp2
 
 # My modules
 from python_blog.models.user import User
-import python_blog.hashing as hashing
+import python_blog.utils.hashing as hashing
 
 # get the machine direction where jinja takes the templates from
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -76,19 +76,19 @@ class Handler(webapp2.RequestHandler):
 # Modules are set here, because if declared on top it trows a
 # circular dependent imports error (documented at Stack Overflow)
 
-from python_blog.index import RHIndex
-from python_blog.new import RHNew
-from python_blog.post import RHPost
-from python_blog.signup import RHSignup
-from python_blog.login import RHLogin
-from python_blog.logout import RHLogout
-from python_blog.welcome import RHWelcome
-from python_blog.edit import RHEdit
-from python_blog.delete import RHDelete
-from python_blog.like import RHLike
-from python_blog.comment import RHComment
-from python_blog.delete_comment import RHDeleteComment
-from python_blog.edit_comment import RHEditComment
+from python_blog.controllers.index import RHIndex
+from python_blog.controllers.new import RHNew
+from python_blog.controllers.post import RHPost
+from python_blog.controllers.signup import RHSignup
+from python_blog.controllers.login import RHLogin
+from python_blog.controllers.logout import RHLogout
+from python_blog.controllers.welcome import RHWelcome
+from python_blog.controllers.edit import RHEdit
+from python_blog.controllers.delete import RHDelete
+from python_blog.controllers.like import RHLike
+from python_blog.controllers.comment import RHComment
+from python_blog.controllers.delete_comment import RHDeleteComment
+from python_blog.controllers.edit_comment import RHEditComment
 
 # Routes
 app = webapp2.WSGIApplication([('/?', Handler),

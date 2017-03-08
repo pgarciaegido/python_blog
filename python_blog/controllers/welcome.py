@@ -1,7 +1,6 @@
 # My modules
 from blog import Handler
-from models.user import User
-import hashing
+from python_blog.models.user import User
 
 
 class RHWelcome(Handler):

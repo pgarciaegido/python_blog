@@ -1,6 +1,6 @@
 # My modules
 from blog import Handler
-from models.entry import Entry
+from python_blog.models.entry import Entry
 
 # Built-in
 import time

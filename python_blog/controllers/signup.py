@@ -6,10 +6,9 @@ import hashlib
 
 # My modules
 from blog import Handler
-from models.user import User
-import signup_validate as sv
-import hashing
-import config
+from python_blog.models.user import User
+import python_blog.utils.signup_validate as sv
+import python_blog.utils.hashing as hashing
 
 
 class RHSignup(Handler):

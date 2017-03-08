@@ -1,7 +1,7 @@
 # My modules
 from blog import Handler
-from models.user import User
-import hashing
+from python_blog.models.user import User
+import python_blog.utils.hashing as hashing
 
 
 class RHLogin(Handler):

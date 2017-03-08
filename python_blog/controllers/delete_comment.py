@@ -1,6 +1,6 @@
 # My modules
 from blog import Handler
-from models.comments import Comments
+from python_blog.models.comments import Comments
 
 import time
 
