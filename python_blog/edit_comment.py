@@ -1,12 +1,11 @@
 # My modules
 from blog import Handler
-from database import Comments
+from models.comments import Comments
 
 import time
-import logging
 
 
-class EditComment(Handler):
+class RHEditComment(Handler):
     def get(self):
         # If user is not logged in
         if not self.request.cookies.get('userid'):
@@ -56,7 +55,6 @@ class EditComment(Handler):
 
                 post_id = c.entry
                 user = self.get_user_cookie()
-                logging.info(user)
 
                 if c.comment == comment:
                     error = "Hey, your comment is the same!"

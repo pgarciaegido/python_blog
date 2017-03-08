@@ -1,10 +1,10 @@
 from blog import Handler
-import database as db
+from models.entry import Entry
 
 import time
 
 
-class Like(Handler):
+class RHLike(Handler):
     def post(self):
         # If user is not logged in
         if not self.request.cookies.get('userid'):
@@ -13,7 +13,7 @@ class Like(Handler):
         else:
             user = self.get_user_cookie()
             post_id = self.request.query.split('=')[1]
-            post = db.Entry.by_id(int(post_id))
+            post = Entry.by_id(int(post_id))
             author = post.author
             username = user.username
 

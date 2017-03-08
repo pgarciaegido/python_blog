@@ -1,12 +1,12 @@
 # My modules
 from blog import Handler
-from database import Entry
+from models.entry import Entry
 
 # Built-in
 import time
 
 
-class Delete(Handler):
+class RHDelete(Handler):
     def post(self):
         # If user is not logged in
         if not self.request.cookies.get('userid'):

@@ -3,7 +3,7 @@ from google.appengine.ext import db
 from blog import Handler
 
 
-class Index(Handler):
+class RHIndex(Handler):
     def render_index(self):
         # Gets all the news from db, and renders em
         entries = db.GqlQuery("SELECT * FROM Entry ORDER BY created DESC")

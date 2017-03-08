@@ -1,9 +1,9 @@
 # My modules
 from blog import Handler
-import database
+from models.entry import Entry
 
 
-class New(Handler):
+class RHNew(Handler):
     def render_front(self, subject="", content="", author="", error=""):
         # Selects newpost template, with default empty strings for form inpts
         self.render("newpost.html", subject=subject, content=content,
@@ -30,7 +30,7 @@ class New(Handler):
 
             if subject and content:
                 # If both exist, create new db instance
-                e = database.Entry(subject=subject, content=content,
+                e = Entry(subject=subject, content=content,
                                    author=author, likes=likes)
                 # This saves the instance
                 e.put()

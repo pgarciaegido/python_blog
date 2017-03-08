@@ -6,13 +6,13 @@ import hashlib
 
 # My modules
 from blog import Handler
-import database
+from models.user import User
 import signup_validate as sv
 import hashing
 import config
 
 
-class Signup(Handler):
+class RHSignup(Handler):
     def get(self):
         self.render("signup.html")
 
@@ -35,7 +35,7 @@ class Signup(Handler):
             user_warn = ''
 
         # If username doesn't exist
-        if database.User.by_username(username) is None:
+        if User.by_username(username) is None:
             user_warn = ''
 
         else:
@@ -68,7 +68,7 @@ class Signup(Handler):
             # Hashes password
             p = hashing.make_pw_hash(username, password)
             # Creates a register in db
-            u = database.User(username=username, password=p, email=email)
+            u = User(username=username, password=p, email=email)
             u.put()
 
             # Gets id from entity

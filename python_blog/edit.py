@@ -1,10 +1,9 @@
 # My modules
 from blog import Handler
-from database import Entry
-import logging
+from models.entry import Entry
 
 
-class Edit(Handler):
+class RHEdit(Handler):
     def get(self):
         # If user is not logged in
         if not self.request.cookies.get('userid'):

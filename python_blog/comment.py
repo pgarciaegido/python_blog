@@ -1,22 +1,23 @@
 # My modules
 from blog import Handler
-import database
+from models.entry import Entry
+from models.comments import Comments
 
 import time
 
 
-class Comment(Handler):
+class RHComment(Handler):
     def post(self):
         user = self.get_user_cookie()
         if not user:
             self.redirect('/blog/login')
         else:
             entry = self.request.query.split('=')[1]
-            e = database.Entry.by_id(int(entry))
+            e = Entry.by_id(int(entry))
             comment = self.request.get('comment')
 
-            c = database.Comments(author=user.username, entry=int(entry),
-                                  comment=comment)
+            c = Comments(author=user.username, entry=int(entry),
+                         comment=comment)
             c.put()
 
             time.sleep(0.1)

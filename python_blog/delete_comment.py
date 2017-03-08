@@ -1,11 +1,11 @@
 # My modules
 from blog import Handler
-from database import Comments
+from models.comments import Comments
 
 import time
 
 
-class DeleteComment(Handler):
+class RHDeleteComment(Handler):
     def post(self):
         user = self.get_user_cookie()
         # If user is not logged in

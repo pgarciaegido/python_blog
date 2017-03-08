@@ -1,10 +1,10 @@
 # My modules
 from blog import Handler
-import database
+from models.user import User
 import hashing
 
 
-class Login(Handler):
+class RHLogin(Handler):
     def get(self):
         self.render('login.html')
 
@@ -13,7 +13,7 @@ class Login(Handler):
         password = self.request.get('password')
 
         # Get user from db using username
-        user_db = database.User.by_username(user)
+        user_db = User.by_username(user)
 
         # If user does not exist
         if user_db is None:

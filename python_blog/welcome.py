@@ -1,12 +1,10 @@
 # My modules
 from blog import Handler
-from database import User
+from models.user import User
 import hashing
 
-import time
 
-
-class Welcome(Handler):
+class RHWelcome(Handler):
     def get(self):
         # Get userid cookie
         u = self.get_user_cookie()

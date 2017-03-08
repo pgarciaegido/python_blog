@@ -3,11 +3,10 @@
 import jinja2
 import os
 import webapp2
-
 # from google.appengine.ext import db
 
 # My modules
-import python_blog.database as database
+from python_blog.models.user import User
 import python_blog.hashing as hashing
 
 # get the machine direction where jinja takes the templates from
@@ -47,7 +46,7 @@ class Handler(webapp2.RequestHandler):
         uid = cookie.split('|')[0]
         if hashing.check_secure_val(cookie) == uid:
             # User method to return instance with id
-            return database.User.by_id(int(uid))
+            return User.by_id(int(uid))
 
     def get_user_cookie(self):
         # Gets a cookie and checks if correct
@@ -77,33 +76,33 @@ class Handler(webapp2.RequestHandler):
 # Modules are set here, because if declared on top it trows a
 # circular dependent imports error (documented at Stack Overflow)
 
-from python_blog.index import Index
-from python_blog.new import New
-from python_blog.post import Post
-from python_blog.signup import Signup
-from python_blog.login import Login
-from python_blog.logout import Logout
-from python_blog.welcome import Welcome
-from python_blog.edit import Edit
-from python_blog.delete import Delete
-from python_blog.like import Like
-from python_blog.comment import Comment
-from python_blog.delete_comment import DeleteComment
-from python_blog.edit_comment import EditComment
+from python_blog.index import RHIndex
+from python_blog.new import RHNew
+from python_blog.post import RHPost
+from python_blog.signup import RHSignup
+from python_blog.login import RHLogin
+from python_blog.logout import RHLogout
+from python_blog.welcome import RHWelcome
+from python_blog.edit import RHEdit
+from python_blog.delete import RHDelete
+from python_blog.like import RHLike
+from python_blog.comment import RHComment
+from python_blog.delete_comment import RHDeleteComment
+from python_blog.edit_comment import RHEditComment
 
 # Routes
 app = webapp2.WSGIApplication([('/?', Handler),
-                               ('/blog/?', Index),
-                               ('/blog/newpost', New),
-                               ('/blog/(\d+)', Post),
-                               ('/blog/signup', Signup),
-                               ('/blog/login', Login),
-                               ('/blog/logout', Logout),
-                               ('/blog/welcome', Welcome),
-                               ('/blog/edit', Edit),
-                               ('/blog/delete', Delete),
-                               ('/blog/like', Like),
-                               ('/blog/comment', Comment),
-                               ('/blog/delete_comment', DeleteComment),
-                               ('/blog/edit_comment', EditComment)
+                               ('/blog/?', RHIndex),
+                               ('/blog/newpost', RHNew),
+                               ('/blog/(\d+)', RHPost),
+                               ('/blog/signup', RHSignup),
+                               ('/blog/login', RHLogin),
+                               ('/blog/logout', RHLogout),
+                               ('/blog/welcome', RHWelcome),
+                               ('/blog/edit', RHEdit),
+                               ('/blog/delete', RHDelete),
+                               ('/blog/like', RHLike),
+                               ('/blog/comment', RHComment),
+                               ('/blog/delete_comment', RHDeleteComment),
+                               ('/blog/edit_comment', RHEditComment)
                                ], debug=True)
