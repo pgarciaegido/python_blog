@@ -5,7 +5,7 @@ import re
 import hashlib
 
 # My modules
-from blog import Handler
+from handler import Handler
 from python_blog.models.user import User
 import python_blog.utils.signup_validate as sv
 import python_blog.utils.hashing as hashing

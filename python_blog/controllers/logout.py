@@ -1,4 +1,4 @@
-from blog import Handler
+from handler import Handler
 
 
 class RHLogout(Handler):

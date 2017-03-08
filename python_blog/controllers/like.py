@@ -1,4 +1,4 @@
-from blog import Handler
+from handler import Handler
 from python_blog.models.entry import Entry
 
 import time

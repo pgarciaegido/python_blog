@@ -1,5 +1,5 @@
 # My modules
-from blog import Handler
+from handler import Handler
 from python_blog.models.comments import Comments
 
 import time

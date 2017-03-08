@@ -1,6 +1,6 @@
 from google.appengine.ext import db
 
-from blog import Handler
+from handler import Handler
 
 
 class RHIndex(Handler):
