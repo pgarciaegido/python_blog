@@ -10,7 +10,7 @@ Webapp written in Python, using Google App Engine, that allows you publish your 
 + Like posts made by someone else
 
 ## Structure
-The backend root file would be _blog.py_, where rests the parent Handler class. The rest of the modules work as child instances of this.
+The backend root file would be _blog.py_, where routes and modules are located. The backend modules will be found in blog_python folder. The main Request Handler is located in _controlers/handler.py_ The rest of the modules work as child instances of this.
 
 The templates and styles are in the _templates_ folder, powered by Jinja2.
 
