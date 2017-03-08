@@ -5,23 +5,21 @@ import time
 
 
 class Like(Handler):
-
     def post(self):
         # If user is not logged in
         if not self.request.cookies.get('userid'):
             self.redirect('/blog/login')
 
         else:
-            username = self.request.get('username')
-            author = self.request.get('author')
+            user = self.get_user_cookie()
+            post_id = self.request.query.split('=')[1]
+            post = db.Entry.by_id(int(post_id))
+            author = post.author
 
-            if username == author:
+            if user.username == author:
                 error = 'Sorry, but you cannot like your own posts!'
                 self.render('error.html', error=error)
             else:
-                post_id = self.request.query.split('=')[1]
-                post = db.Entry.get_by_id(int(post_id))
-
                 # If username is part of liked_by list
                 # Unlike
                 if any(username in u for u in post.liked_by):

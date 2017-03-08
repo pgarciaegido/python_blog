@@ -14,7 +14,7 @@ class Entry(db.Model):
 
     @classmethod
     def by_id(cls, pid):
-        p = Entry.get_by_id(uid)
+        p = Entry.get_by_id(pid)
         return p
 
 
@@ -48,6 +48,6 @@ class Comments(db.Model):
 
     @classmethod
     def by_entry(cls, entry_id, created):
-        u = Comments.all()
-        .filter('entry =', entry_id).order(created).fetch(100)
+        u = Comments.all().filter('entry =',
+                                  entry_id).order(created).fetch(100)
         return u
