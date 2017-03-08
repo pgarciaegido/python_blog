@@ -15,8 +15,9 @@ class Like(Handler):
             post_id = self.request.query.split('=')[1]
             post = db.Entry.by_id(int(post_id))
             author = post.author
+            username = user.username
 
-            if user.username == author:
+            if username == author:
                 error = 'Sorry, but you cannot like your own posts!'
                 self.render('error.html', error=error)
             else:

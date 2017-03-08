@@ -7,14 +7,17 @@ import time
 
 class Comment(Handler):
     def post(self):
-        query = self.request.query.split('__')
-        entry = query[0].split('=')[1]
-        author = query[1].split('=')[1]
+        user = self.get_user_cookie()
+        if not user:
+            self.redirect('/blog/login')
+        else:
+            entry = self.request.query.split('=')[1]
+            e = database.Entry.by_id(int(entry))
+            comment = self.request.get('comment')
 
-        comment = self.request.get('comment')
+            c = database.Comments(author=user.username, entry=int(entry),
+                                  comment=comment)
+            c.put()
 
-        c = database.Comments(author=author, entry=int(entry), comment=comment)
-        c.put()
-
-        time.sleep(0.1)
-        self.redirect('/blog/' + entry)
+            time.sleep(0.1)
+            self.redirect('/blog/' + entry)

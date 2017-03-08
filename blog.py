@@ -52,7 +52,10 @@ class Handler(webapp2.RequestHandler):
     def get_user_cookie(self):
         # Gets a cookie and checks if correct
         uid_cookie = self.request.cookies.get('userid')
-        return self.check_cookie(uid_cookie)
+        if uid_cookie is None:
+            return None
+        else:
+            return self.check_cookie(uid_cookie)
 
     def initialize(self, *a, **kw):
         webapp2.RequestHandler.initialize(self, *a, **kw)
@@ -61,8 +64,12 @@ class Handler(webapp2.RequestHandler):
         if uid_cookie:
             # logged_user is an instance of User db
             logged_user = self.check_cookie(uid_cookie)
+            # If cookie is not correct
+            if logged_user is None:
+                self.write('Denied')
             # Creates a global variable to use in templates
-            jinja_env.globals['username'] = logged_user.username
+            else:
+                jinja_env.globals['username'] = logged_user.username
         else:
             jinja_env.globals['username'] = ''
 
