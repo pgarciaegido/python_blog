@@ -5,45 +5,45 @@ from python_blog.models.entry import Entry
 
 class RHEdit(Handler):
     def get(self):
+        user = self.get_user_cookie()
         # If user is not logged in
-        if not self.request.cookies.get('userid'):
+        if not user:
             self.redirect('/blog/login')
 
         else:
-            user = self.get_user_cookie()
-
-            # Queries form looks like this:
-            # p=IdNumberOfPost__a=username
-            queries = self.request.query.split('__')
-            author = queries[1].split('=')[1]
+            post_id = self.request.query.split('=')[1]
+            p = Entry.by_id(int(post_id))
+            author = p.author
 
             if user.username != author:
                 error = "Sorry, but you can only edit your own posts"
                 self.render('error.html', error=error)
 
             else:
-                # Get postid from the query
-                post_id = queries[0].split('=')[1]
-
-                # Find the result on db
-                post = Entry.get_by_id(int(post_id))
-                subject = post.subject
-                content = post.content
+                subject = p.subject
+                content = p.content
 
                 self.render('edit.html', subject=subject, content=content,
                             post_id=post_id)
 
     def post(self):
-        # Getting new inputs on edition
-        post_id = self.request.get('post')
-        subject = self.request.get('subject')
-        content = self.request.get('content')
+        user = self.get_user_cookie()
+        if not user:
+            self.redirect('/blog/login')
+        else:
+            post_id = self.request.query.split('=')[1]
+            p = Entry.by_id(int(post_id))
+            author = p.author
 
-        # Getting post
-        post = Entry.get_by_id(int(post_id))
+            if user.username != author:
+                self.redirect('/blog/login')
+            else:
+                subject = self.request.get('subject')
+                content = self.request.get('content')
 
-        post.subject = subject
-        post.content = content
+                # Getting post
+                p.subject = subject
+                p.content = content
 
-        post.put()
-        self.redirect('/blog/' + post_id)
+                p.put()
+                self.redirect('/blog/' + post_id)

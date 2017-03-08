@@ -6,12 +6,12 @@ import time
 
 class RHLike(Handler):
     def post(self):
+        user = self.get_user_cookie()
         # If user is not logged in
-        if not self.request.cookies.get('userid'):
+        if not user:
             self.redirect('/blog/login')
 
         else:
-            user = self.get_user_cookie()
             post_id = self.request.query.split('=')[1]
             post = Entry.by_id(int(post_id))
             author = post.author

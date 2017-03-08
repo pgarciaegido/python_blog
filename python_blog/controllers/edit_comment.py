@@ -7,16 +7,15 @@ import time
 
 class RHEditComment(Handler):
     def get(self):
+        user = self.get_user_cookie()
         # If user is not logged in
-        if not self.request.cookies.get('userid'):
+        if not user:
             self.redirect('/blog/login')
 
         else:
-            user = self.get_user_cookie()
             comment_id = self.request.query.split('=')[1]
             # Comment instance from db
             c = Comments.by_id(int(comment_id))
-
             # if comment doesn't exist
             if not c:
                 error = "This comment does not exist"
@@ -36,8 +35,9 @@ class RHEditComment(Handler):
                                 post_id=post_id, comment_id=comment_id)
 
     def post(self):
+        user = self.get_user_cookie()
         # If user is not logged in
-        if not self.request.cookies.get('userid'):
+        if not user:
             self.redirect('blog/login')
         else:
             comment_id = self.request.query.split('=')[1]
