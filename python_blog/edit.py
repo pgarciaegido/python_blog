@@ -3,6 +3,7 @@ from blog import Handler
 from database import Entry
 import logging
 
+
 class Edit(Handler):
     def get(self):
         # If user is not logged in
@@ -15,7 +16,7 @@ class Edit(Handler):
             # Queries form looks like this:
             # p=IdNumberOfPost__a=username
             queries = self.request.query.split('__')
-            author  = queries[1].split('=')[1]
+            author = queries[1].split('=')[1]
 
             if user.username != author:
                 error = "Sorry, but you can only edit your own posts"
@@ -26,12 +27,12 @@ class Edit(Handler):
                 post_id = queries[0].split('=')[1]
 
                 # Find the result on db
-                post    = Entry.get_by_id(int(post_id))
+                post = Entry.get_by_id(int(post_id))
                 subject = post.subject
                 content = post.content
 
                 self.render('edit.html', subject=subject, content=content,
-                                         post_id=post_id)
+                            post_id=post_id)
 
     def post(self):
         # Getting new inputs on edition

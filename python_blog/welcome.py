@@ -1,9 +1,10 @@
 # My modules
-from blog     import Handler
+from blog import Handler
 from database import User
 import hashing
 
 import time
+
 
 class Welcome(Handler):
     def get(self):

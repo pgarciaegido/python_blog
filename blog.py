@@ -8,14 +8,14 @@ import webapp2
 
 # My modules
 import python_blog.database as database
-import python_blog.hashing  as hashing
+import python_blog.hashing as hashing
 
 # get the machine direction where jinja takes the templates from
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 # Sets up jinja configuration.
 # The autoescape is to avoid sneaky HTML tags or malicious scripts on forms
-jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
-                               autoescape = True)
+jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
+                               autoescape=True)
 
 
 class Handler(webapp2.RequestHandler):
@@ -40,7 +40,7 @@ class Handler(webapp2.RequestHandler):
         cookie = hashing.make_secure_val(str(uid))
         # Add cookie to header
         self.response.headers.add_header('Set-Cookie',
-        'userid=%s; Path=/' % cookie)
+                                         'userid=%s; Path=/' % cookie)
 
     def check_cookie(self, cookie):
         # Checks if cookie is correct
@@ -66,21 +66,23 @@ class Handler(webapp2.RequestHandler):
         else:
             jinja_env.globals['username'] = ''
 
+
 # Modules are set here, because if declared on top it trows a
 # circular dependent imports error (documented at Stack Overflow)
-from python_blog.index          import Index
-from python_blog.new            import New
-from python_blog.post           import Post
-from python_blog.signup         import Signup
-from python_blog.login          import Login
-from python_blog.logout         import Logout
-from python_blog.welcome        import Welcome
-from python_blog.edit           import Edit
-from python_blog.delete         import Delete
-from python_blog.like           import Like
-from python_blog.comment        import Comment
+
+from python_blog.index import Index
+from python_blog.new import New
+from python_blog.post import Post
+from python_blog.signup import Signup
+from python_blog.login import Login
+from python_blog.logout import Logout
+from python_blog.welcome import Welcome
+from python_blog.edit import Edit
+from python_blog.delete import Delete
+from python_blog.like import Like
+from python_blog.comment import Comment
 from python_blog.delete_comment import DeleteComment
-from python_blog.edit_comment   import EditComment
+from python_blog.edit_comment import EditComment
 
 # Routes
 app = webapp2.WSGIApplication([('/?', Handler),
@@ -97,4 +99,4 @@ app = webapp2.WSGIApplication([('/?', Handler),
                                ('/blog/comment', Comment),
                                ('/blog/delete_comment', DeleteComment),
                                ('/blog/edit_comment', EditComment)
-                              ], debug=True)
+                               ], debug=True)

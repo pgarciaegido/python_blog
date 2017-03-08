@@ -1,19 +1,19 @@
 # My modules
-from blog     import Handler
+from blog import Handler
 from database import Entry
 
-#Built-in
+# Built-in
 import time
 
-class Delete(Handler):
 
+class Delete(Handler):
     def post(self):
         # If user is not logged in
         if not self.request.cookies.get('userid'):
             self.redirect('/blog/login')
 
         else:
-            user   = self.get_user_cookie()
+            user = self.get_user_cookie()
             author = self.request.get('author')
 
             if user.username != author:
@@ -22,7 +22,7 @@ class Delete(Handler):
 
             else:
                 post_id = self.request.query.split('=')[1]
-                post    = Entry.get_by_id(int(post_id))
+                post = Entry.get_by_id(int(post_id))
 
                 post.delete()
                 # When redirecting, db was still sending me the just deleted

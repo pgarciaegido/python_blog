@@ -4,10 +4,11 @@ import database
 
 import time
 
+
 class Comment(Handler):
     def post(self):
-        query  = self.request.query.split('__')
-        entry  = query[0].split('=')[1]
+        query = self.request.query.split('__')
+        entry = query[0].split('=')[1]
         author = query[1].split('=')[1]
 
         comment = self.request.get('comment')
