@@ -14,5 +14,6 @@ class User(db.Model):
 
     @classmethod
     def by_username(cls, name):
+        """ Gets and entity by its username """
         u = User.all().filter('username =', name).get()
         return u

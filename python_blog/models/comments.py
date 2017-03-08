@@ -14,6 +14,7 @@ class Comments(db.Model):
 
     @classmethod
     def by_entry(cls, entry_id, created):
+        """ Gets list of comments on a certain entry (or post) """
         u = Comments.all().filter('entry =',
                                   entry_id).order(created).fetch(100)
         return u

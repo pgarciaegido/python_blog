@@ -5,7 +5,8 @@ from python_blog.models.entry import Entry
 
 class RHNew(Handler):
     def render_front(self, subject="", content="", author="", error=""):
-        # Selects newpost template, with default empty strings for form inpts
+        """ Selects newpost template,
+            with default empty strings for form inpts """
         self.render("newpost.html", subject=subject, content=content,
                     author=author, error=error)
 

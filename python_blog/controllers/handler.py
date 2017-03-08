@@ -22,7 +22,7 @@ class Handler(webapp2.RequestHandler):
         self.redirect('/blog/?')
 
     def write(self, *a, **params):
-        # Writes whatever you pass as param
+        """ Writes whatever you pass as param """
         self.response.out.write(*a, **params)
 
     def render_str(self, template, **params):
@@ -30,25 +30,25 @@ class Handler(webapp2.RequestHandler):
         return t.render(params)
 
     def render(self, template, **params):
-        # Renders the template, with optional parameters
+        """ Renders the template, with optional parameters """
         self.write(self.render_str(template, **params))
 
     def set_cookie(self, uid):
-        # Creates a hashed cookie value
+        """ Creates a hashed cookie value """
         cookie = hashing.make_secure_val(str(uid))
         # Add cookie to header
         self.response.headers.add_header('Set-Cookie',
                                          'userid=%s; Path=/' % cookie)
 
     def check_cookie(self, cookie):
-        # Checks if cookie is correct
+        """ Checks if cookie is correct """
         uid = cookie.split('|')[0]
         if hashing.check_secure_val(cookie) == uid:
             # User method to return instance with id
             return User.by_id(int(uid))
 
     def get_user_cookie(self):
-        # Gets a cookie and checks if correct
+        """ Gets a cookie and checks if correct """
         uid_cookie = self.request.cookies.get('userid')
         if uid_cookie is None:
             return None
@@ -56,6 +56,7 @@ class Handler(webapp2.RequestHandler):
             return self.check_cookie(uid_cookie)
 
     def initialize(self, *a, **kw):
+        """ Checks if user is logged """
         webapp2.RequestHandler.initialize(self, *a, **kw)
         # Gets cookie
         uid_cookie = self.request.cookies.get('userid')
