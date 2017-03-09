@@ -10,14 +10,13 @@
   <div class="entry-bottom">
     <div class="entry-options">
       <!-- edit -->
-      <a href="/blog/edit?p={{entry.key().id()}}" class="edit">Edit</a>
+      <a href="/blog/edit/{{entry.key().id()}}" class="edit">Edit</a>
       <!-- delete -->
-      <form action="/blog/delete?d={{entry.key().id()}}" method="post">
+      <form action="/blog/delete/{{entry.key().id()}}" method="post">
         <input type="submit" class="delete" value="Delete" />
-        <input type="hidden" name="author" value="{{entry.author}}">
       </form>
       <!-- likes -->
-      <form action="/blog/like?l={{entry.key().id()}}" method="post">
+      <form action="/blog/like/{{entry.key().id()}}" method="post">
         <!-- Check if username has liked the post -->
         <!-- Array use brought from
         http://stackoverflow.com/questions/14516766/python-how-to-store-an-array-in-google-app-engine-datastore -->

@@ -5,14 +5,13 @@ import time
 
 
 class RHLike(Handler):
-    def post(self):
+    def post(self, post_id):
         user = self.get_user_cookie()
         # If user is not logged in
         if not user:
             self.redirect('/blog/login')
 
         else:
-            post_id = self.request.query.split('=')[1]
             post = Entry.by_id(int(post_id))
             author = post.author
             username = user.username
@@ -24,12 +23,10 @@ class RHLike(Handler):
                 # If username is part of liked_by list
                 # Unlike
                 if any(username in u for u in post.liked_by):
-                    post.likes -= 1
                     post.liked_by.remove(username)
 
                 # Like
                 else:
-                    post.likes += 1
                     post.liked_by.append(username)
 
                 post.put()

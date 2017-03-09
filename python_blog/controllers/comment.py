@@ -7,18 +7,22 @@ import time
 
 
 class RHComment(Handler):
-    def post(self):
+    def post(self, post_id):
         user = self.get_user_cookie()
         if not user:
             self.redirect('/blog/login')
         else:
-            entry = self.request.query.split('=')[1]
-            e = Entry.by_id(int(entry))
-            comment = self.request.get('comment')
+            e = Entry.by_id(int(post_id))
 
-            c = Comments(author=user.username, entry=int(entry),
-                         comment=comment)
-            c.put()
+            if not e:
+                self.redirect('/blog')
 
-            time.sleep(0.1)
-            self.redirect('/blog/' + entry)
+            else:
+                comment = self.request.get('comment')
+
+                c = Comments(author=user.username, entry=int(post_id),
+                             comment=comment)
+                c.put()
+
+                time.sleep(0.1)
+                self.redirect('/blog/' + post_id)

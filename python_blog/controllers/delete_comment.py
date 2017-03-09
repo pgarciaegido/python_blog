@@ -6,14 +6,13 @@ import time
 
 
 class RHDeleteComment(Handler):
-    def post(self):
+    def post(self, comment_id):
         user = self.get_user_cookie()
         # If user is not logged in
         if not user:
             self.redirect('/blog/login')
 
         else:
-            comment_id = self.request.query.split('=')[1]
             c = Comments.by_id(int(comment_id))
             author = c.author
 
@@ -24,7 +23,7 @@ class RHDeleteComment(Handler):
             else:
                 post_id = c.entry
                 c.delete()
-                # When redirecting, db was still sending me the just deleted
-                # item. This workaround avoids that
+                # When redirecting, db was still sending me the just
+                # deleted item. This workaround avoids that
                 time.sleep(0.1)
                 self.redirect('/blog/' + str(post_id))

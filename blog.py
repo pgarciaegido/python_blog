@@ -28,10 +28,11 @@ app = webapp2.WSGIApplication([('/?', Handler),
                                ('/blog/login', RHLogin),
                                ('/blog/logout', RHLogout),
                                ('/blog/welcome', RHWelcome),
-                               ('/blog/edit', RHEdit),
-                               ('/blog/delete', RHDelete),
-                               ('/blog/like', RHLike),
-                               ('/blog/comment', RHComment),
-                               ('/blog/delete_comment', RHDeleteComment),
-                               ('/blog/edit_comment', RHEditComment)
+                               ('/blog/edit/([0-9]+)', RHEdit),
+                               ('/blog/delete/([0-9]+)', RHDelete),
+                               ('/blog/like/([0-9]+)', RHLike),
+                               ('/blog/comment/([0-9]+)', RHComment),
+                               ('/blog/delete_comment/([0-9]+)',
+                                RHDeleteComment),
+                               ('/blog/edit_comment/([0-9]+)', RHEditComment)
                                ], debug=True)

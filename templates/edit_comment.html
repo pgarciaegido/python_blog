@@ -3,7 +3,7 @@
 {% block content %}
 <div class="form-section">
   <h2>Edit comment</h2>
-  <form action="/blog/edit_comment?c={{comment_id}}" method="post">
+  <form action="/blog/edit_comment/{{comment_id}}" method="post">
     <div>Content</div>
     <textarea name="comment">{{comment}}</textarea>
     <br>

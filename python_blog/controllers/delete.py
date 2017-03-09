@@ -7,25 +7,28 @@ import time
 
 
 class RHDelete(Handler):
-    def post(self):
+    def post(self, post_id):
+        user = self.get_user_cookie()
         # If user is not logged in
-        if not self.request.cookies.get('userid'):
+        if not user:
             self.redirect('/blog/login')
 
         else:
-            user = self.get_user_cookie()
-            author = self.request.get('author')
+            p = Entry.get_by_id(int(post_id))
 
-            if user.username != author:
-                error = 'Sorry, but you can only delete your own posts!'
-                self.render('error.html', error=error)
+            if not p:
+                self.redirect('/blog')
 
             else:
-                post_id = self.request.query.split('=')[1]
-                post = Entry.get_by_id(int(post_id))
+                author = p.author
 
-                post.delete()
-                # When redirecting, db was still sending me the just deleted
-                # item. This workaround avoids that
-                time.sleep(0.1)
-                self.redirect('/blog')
+                if user.username != author:
+                    error = 'Sorry, but you can only delete your own posts!'
+                    self.render('error.html', error=error)
+
+                else:
+                    p.delete()
+                    # When redirecting, db was still sending me the just
+                    # deleted item. This workaround avoids that
+                    time.sleep(0.1)
+                    self.redirect('/blog')

@@ -6,14 +6,13 @@ import time
 
 
 class RHEditComment(Handler):
-    def get(self):
+    def get(self, comment_id):
         user = self.get_user_cookie()
         # If user is not logged in
         if not user:
             self.redirect('/blog/login')
 
         else:
-            comment_id = self.request.query.split('=')[1]
             # Comment instance from db
             c = Comments.by_id(int(comment_id))
             # if comment doesn't exist
@@ -34,38 +33,42 @@ class RHEditComment(Handler):
                     self.render('edit_comment.html', comment=comment,
                                 post_id=post_id, comment_id=comment_id)
 
-    def post(self):
+    def post(self, comment_id):
         user = self.get_user_cookie()
         # If user is not logged in
         if not user:
             self.redirect('blog/login')
         else:
-            comment_id = self.request.query.split('=')[1]
             # Getting comment from db
             c = Comments.by_id(int(comment_id))
-            author = c.author
-            user = self.get_user_cookie()
 
-            if user.username != author:
-                self.write('Access denied')
+            if not c:
+                self.redirect('blog/login')
 
             else:
-                # Getting new inputs on edition
-                comment = self.request.get('comment')
-
-                post_id = c.entry
+                author = c.author
                 user = self.get_user_cookie()
 
-                if c.comment == comment:
-                    error = "Hey, your comment is the same!"
-                    self.render('edit_comment.html', comment=comment,
-                                post_id=post_id, comment_id=comment_id,
-                                error=error)
+                if user.username != author:
+                    self.write('Access denied')
 
                 else:
-                    # Setting comment
-                    c.comment = comment
-                    c.put()
+                    # Getting new inputs on edition
+                    comment = self.request.get('comment')
 
-                    time.sleep(0.1)
-                    self.redirect('/blog/' + str(post_id))
+                    post_id = c.entry
+                    user = self.get_user_cookie()
+
+                    if c.comment == comment:
+                        error = "Hey, your comment is the same!"
+                        self.render('edit_comment.html', comment=comment,
+                                    post_id=post_id, comment_id=comment_id,
+                                    error=error)
+
+                    else:
+                        # Setting comment
+                        c.comment = comment
+                        c.put()
+
+                        time.sleep(0.1)
+                        self.redirect('/blog/' + str(post_id))

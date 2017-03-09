@@ -32,7 +32,7 @@ class RHNew(Handler):
             if subject and content:
                 # If both exist, create new db instance
                 e = Entry(subject=subject, content=content,
-                                   author=author, likes=likes)
+                          author=author, likes=likes)
                 # This saves the instance
                 e.put()
 
